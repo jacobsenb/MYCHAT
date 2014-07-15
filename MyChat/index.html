@@ -1,9 +1,40 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title></title>
+    <title>Echo test</title>
+    <style type="text/css">
+        .container {
+            background-color: #CCCCCC;
+            border: thick solid #000000;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-
+    <div class="container">
+        <input type="text" id="message" />
+        <input type="button" id="echomessage" value="Echo" />
+        <ul id="messages"></ul>
+    </div>
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.echo = function (message) {
+                var encodedMsg = $('<div />').text(message).html();
+                $('#messages').append('<li>' + encodedMsg + '</li>');
+            };
+            $('#message').focus();
+            $.connection.hub.start().done(function () {
+                $('#echomessage').click(function () {
+                    chat.server.echo($('#message').val());
+                    $('#message').val('').focus();
+                });
+            });
+        });
+    </script>
 </body>
 </html>

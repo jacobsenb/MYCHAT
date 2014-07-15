@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 
-namespace MyChat.Hubs
+namespace MyChat.Controllers
 {
     public class ChatHub : Hub
     {
-        public void Hello()
+        public void Echo(string message)
         {
-            Clients.All.hello();
+            Clients.All.echo(message);
         }
     }
 }
