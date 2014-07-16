@@ -13,9 +13,9 @@ namespace MyChat.DataAccess.Interfaces
         IClient SaveClient(IClient o);
 
         IMessage LoadMessage(Guid id);
-        IMessage SaveMessage(IMessage o);
+        IMessage SaveMessage(IMessage o, Guid? clientId = null);
 
-        IParticipant LoadParticipant(Guid id);
+        IParticipant LoadParticipant(Guid clientId, Guid sessionId);
         IParticipant SaveParticipant(IParticipant o);
 
         IPractice LoadPractice(Guid id);

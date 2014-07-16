@@ -36,8 +36,21 @@ namespace MyChat.DataAccess
             return _context.Messages.SingleOrDefault(o => o.MessageId == id);
         }
 
-        public IMessage SaveMessage(IMessage o)
+        public IMessage SaveMessage(IMessage o, Guid? clientId = null)
         {
+            if (clientId != null)
+            { // user message
+                var participant = _context.Participants.SingleOrDefault(c => c.SessionId == o.SessionId && c.ClientId == clientId);
+                if (participant == null)
+                    throw new InvalidOperationException("Couldn't get participant");
+                if (o.ParticipantId == null)
+                    o.ParticipantId = participant.ParticipantId;
+                else if (o.ParticipantId != participant.ParticipantId)
+                    throw new InvalidOperationException("Invalid participantId");    
+            }
+            //else
+            //  system message
+
             var message = _context.Messages.Create();
             message.MessageId = o.MessageId;
             message.MessageText = o.MessageText;
@@ -49,9 +62,9 @@ namespace MyChat.DataAccess
             return message;
         }
 
-        public IParticipant LoadParticipant(Guid id)
+        public IParticipant LoadParticipant(Guid clientId, Guid sessionId)
         {
-            return _context.Participants.SingleOrDefault(o => o.ParticipantId == id);
+            return _context.Participants.SingleOrDefault(o => o.ClientId == clientId && o.SessionId == sessionId);
         }
 
         public IParticipant SaveParticipant(IParticipant o)
