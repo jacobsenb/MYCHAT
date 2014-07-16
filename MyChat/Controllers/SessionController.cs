@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Routing;
 using MyChat.DataAccess;
+using MyChat.DataAccess.Interfaces;
 using MyChat.Model;
 using MyChat.Model.Interfaces;
 
@@ -18,7 +19,9 @@ namespace MyChat.Controllers
         [Route("{guid}")]
         public SessionDto Get(Guid guid)
         {
-            using (var db = new Db())
+            if (guid == Guid.Empty)
+                throw new ArgumentNullException("guid");
+            using (var db = (IDb)new Db())
             {
                 var o = db.LoadSession(guid);
                 if (o == null) return null;
@@ -30,7 +33,9 @@ namespace MyChat.Controllers
         [Route("")]
         public SessionDto Post([FromBody]SessionDto value)
         {
-            using (var db = new Db())
+            if (value == null)
+                throw new ArgumentNullException("value");
+            using (var db = (IDb)new Db())
             {
                 return new SessionDto(db.SaveSession(value));
             }

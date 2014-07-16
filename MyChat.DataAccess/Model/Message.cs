@@ -18,7 +18,7 @@ namespace MyChat.DataAccess.Model
 
         public Guid SessionId { get; set; }
 
-        public Guid ParticipantId { get; set; }
+        public Guid? ParticipantId { get; set; }
 
         public virtual Participant Participant { get; set; }
 

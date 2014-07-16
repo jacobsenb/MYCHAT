@@ -24,6 +24,6 @@ namespace MyChat.Model
         public string MessageText { get; set; }
         public DateTime PostDateTime { get; set; }
         public Guid SessionId { get; set; }
-        public Guid ParticipantId { get; set; }
+        public Guid? ParticipantId { get; set; }
     }
 }

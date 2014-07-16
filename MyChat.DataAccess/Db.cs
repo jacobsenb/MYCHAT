@@ -95,6 +95,11 @@ namespace MyChat.DataAccess
             return session;
         }
 
+        public IList<IMessage> LoadMessagesForSession(Guid sessionId)
+        {
+            return _context.Messages.Where(o => o.SessionId == sessionId).ToList().Cast<IMessage>().ToList();
+        }
+
         public void Dispose()
         {
             _context.Dispose();

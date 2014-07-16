@@ -23,5 +23,7 @@ namespace MyChat.DataAccess.Interfaces
 
         ISession LoadSession(Guid id);
         ISession SaveSession(ISession o);
+
+        IList<IMessage> LoadMessagesForSession(Guid sessionId);
     }
 }
