@@ -12,6 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3F8692
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{55208BF8-F59B-4A9C-8715-30AED4042CEA}"
+	ProjectSection(SolutionItems) = preProject
+		Database\MyChat.sql = Database\MyChat.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.DataAccess", "MyChat.DataAccess\MyChat.DataAccess.csproj", "{8EC45C4C-B9CE-4E6E-9BA6-FDF816034366}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Model", "MyChat.Model\MyChat.Model.csproj", "{56361AF0-B509-4C15-912A-A36295F22AEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +31,14 @@ Global
 		{4D88751A-467D-4D51-A895-C8EA022FC0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D88751A-467D-4D51-A895-C8EA022FC0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D88751A-467D-4D51-A895-C8EA022FC0AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EC45C4C-B9CE-4E6E-9BA6-FDF816034366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EC45C4C-B9CE-4E6E-9BA6-FDF816034366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EC45C4C-B9CE-4E6E-9BA6-FDF816034366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EC45C4C-B9CE-4E6E-9BA6-FDF816034366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56361AF0-B509-4C15-912A-A36295F22AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56361AF0-B509-4C15-912A-A36295F22AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56361AF0-B509-4C15-912A-A36295F22AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56361AF0-B509-4C15-912A-A36295F22AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
