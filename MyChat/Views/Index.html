@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="MyChat">
+<style>
+    .ng-invalid.ng-dirty {
+        border-color: #FA787E;
+    }
+
+    .ng-valid.ng-dirty {
+        border-color: #78FA89;
+    }
+</style>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <link href="../CSS/bootstrap.css" rel="stylesheet" />
+    <title>Title Bar</title>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+    <script src="../Scripts/angular-resource.min.js"></script>
+    <script src="../Scripts/angular-animate.min.js"></script>
+    <script src="../Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="../Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="../app.js"></script>
+    <script src="../Services/MyChatService.js"></script>
+    <script src="../Controllers/Session.js"></script>
+    <link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="../scripts/jquery/jquery-1.8.3.min.js"></script>
+    <script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../scripts/bootstrap-datetimepicker.js"></script>
+    <script src="../scripts/locales/bootstrap-datetimepicker.fr.js"></script>
+</head>
+<body>
+    <div id="page">
+        <header class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="#/Session">Create Session</a></li>
+            </ul>
+        </header>
+
+        <section class="container" id="body">
+            <div data-ng-view=""></div>
+        </section>
+
+        <hr />
+
+        <footer class="container"></footer>
+    </div>
+
+   
+
+</body>
+</html>
+
+

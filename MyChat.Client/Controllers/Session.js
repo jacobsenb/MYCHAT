@@ -4,7 +4,13 @@
     this.SessionId = guid();
     this.Owner;
     this.Topic;
+    this.email;
+    this.name;
+    this.practice;
+    this.client;
     this.StartDateTime = currentdate;
+    this.participants = new Array();
+    //this.clients = {};
 
     this.CreateSession = function () {
 
@@ -27,6 +33,23 @@
 
         }
     }
+
+    this.AddParticipant = function (name, email) {
+        var name1 = name;
+        var email1 = email;
+        var participant = { Name: name1, Email: email1 };
+        try
+        {
+            this.participants.push(participant);
+            this.name = "";
+            this.email = "";
+        }
+        catch(ex)
+        {
+
+        }
+  
+        };
 
     function guid() {
         function _p8(s) {
