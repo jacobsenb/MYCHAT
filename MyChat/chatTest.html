@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Test</title>
+    <style type="text/css">
+        .container {
+            background-color: #CCCCCC;
+            border: thick solid #000000;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+    <body>
+        <!--<div class="container">
+            <ul id="participants"></ul>
+        </div>-->
+        <div style="clear:both"></div>
+        <div class="container">        
+            <input type="text" id="message" />
+            <input type="button" id="sendmessage" value="Send" />
+            <div id="systemMessage"></div>
+            <br />
+        
+            <input type="hidden" id="sessionId" />
+            <input type="hidden" id="clientId" />
+            <input type="hidden" id="clientName" />
+        
+            <ul id="discussion"></ul>
+        </div>
+
+        <!--Script references. -->
+        <script src="Scripts/jquery-1.6.4.min.js"></script>        
+        <script src="Scripts/jquery.signalR-2.1.0.min.js"></script>        
+        <script src="signalr/hubs"></script>
+        
+        <script type="text/javascript">
+            $(function () {
+
+                $('#sendmessage').attr("disabled", "disabled");
+
+                // Declare a proxy to reference the hub.
+                var chat = $.connection.chatHub;
+
+                // set session and client ids
+                $('#sessionId').val(prompt('Enter sessionId:', '2A9AB809-F50A-40AE-AE5C-F454F8B3861C'));
+                $('#clientId').val(prompt('Enter clientId:', '6C5DEE90-8C52-44F4-90CD-2F8AC8E56A8D'));
+
+                // Set initial focus to message input box.
+                $('#message').focus();
+
+                $('#systemMessage').html('Logging In...');            
+
+                // rec name (complete login)
+                chat.client.verifyName = function (name) {
+                
+                    var encodedName = $('<div />').text(name).html();
+                    $('#clientName').val(encodedName);
+
+                    $('#sendmessage').removeAttr("disabled"); // enable when we have a name set
+
+                    $('#systemMessage').html('');
+                }
+
+                // rec messages
+                chat.client.broadcastMessage = function (name, message) {
+
+                    var encodedMsg = $('<div />').text(message).html();
+
+                    if (name != null) {
+                        // user message
+                        var encodedName = $('<div />').text(name).html();
+                                            
+                        $('#discussion').append('<li><strong>' + encodedName
+                            + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+                    } else {
+                        // system message
+                        $('#discussion').append('<li><strong>' + encodedMsg + '</strong>');
+                    }                
+                };
+
+
+                // start connection and join session (login)
+                $.connection.hub.start().done(function () {
+
+                    // join session
+                    chat.server.joinSession($('#sessionId').val(), $('#clientId').val());
+
+                    // when sendmessage is clicked
+                    $('#sendmessage').click(function () {
+
+                        // send message to server
+                        chat.server.sendMessage($('#sessionId').val(), $('#clientId').val(), $('#message').val());                    
+
+                        // Clear text box and reset focus for next comment.
+                        $('#message').val('').focus();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

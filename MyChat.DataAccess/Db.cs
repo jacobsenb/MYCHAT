@@ -69,9 +69,21 @@ namespace MyChat.DataAccess
 
         public IParticipant SaveParticipant(IParticipant o)
         {
-            var participant = _context.Participants.Create();
+            var isNew = false;
+            var participant = _context.Participants.SingleOrDefault(p => p.ParticipantId == o.ParticipantId);
+            if (participant == null)
+            {
+                participant = _context.Participants.Create();
+                isNew = true;
+            }                            
+            participant.ParticipantId = o.ParticipantId;
+            participant.ClientId = o.ClientId;
+            participant.Accepted = o.Accepted;
+            participant.SessionId = o.SessionId;
 
-            _context.Participants.Add(participant);
+            if (isNew)
+                _context.Participants.Add(participant);
+
             _context.SaveChanges();
             return participant;
         }
