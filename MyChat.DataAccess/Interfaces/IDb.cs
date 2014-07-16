@@ -25,5 +25,7 @@ namespace MyChat.DataAccess.Interfaces
         ISession SaveSession(ISession o);
 
         IList<IMessage> LoadMessagesForSession(Guid sessionId);
+        IList<IClient> LoadClientsForPractice(Guid practiceId);
+        IList<IParticipant> LoadParticipantsForSession(Guid sessionId);
     }
 }

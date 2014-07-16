@@ -100,6 +100,16 @@ namespace MyChat.DataAccess
             return _context.Messages.Where(o => o.SessionId == sessionId).ToList().Cast<IMessage>().ToList();
         }
 
+        public IList<IClient> LoadClientsForPractice(Guid practiceId)
+        {
+            return _context.Clients.Where(o => o.PracticeId == practiceId).ToList().Cast<IClient>().ToList();
+        }
+
+        public IList<IParticipant> LoadParticipantsForSession(Guid sessionId)
+        {
+            return _context.Participants.Where(o => o.SessionId == sessionId).ToList().Cast<IParticipant>().ToList();
+        }
+
         public void Dispose()
         {
             _context.Dispose();
