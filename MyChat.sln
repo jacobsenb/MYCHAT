@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.DataAccess", "MyChat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Model", "MyChat.Model\MyChat.Model.csproj", "{56361AF0-B509-4C15-912A-A36295F22AEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Client", "MyChat.Client\MyChat.Client.csproj", "{A4021976-286A-47C0-A2D6-B6F8E7CCA8FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{56361AF0-B509-4C15-912A-A36295F22AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56361AF0-B509-4C15-912A-A36295F22AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56361AF0-B509-4C15-912A-A36295F22AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4021976-286A-47C0-A2D6-B6F8E7CCA8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4021976-286A-47C0-A2D6-B6F8E7CCA8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4021976-286A-47C0-A2D6-B6F8E7CCA8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4021976-286A-47C0-A2D6-B6F8E7CCA8FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
