@@ -59,20 +59,20 @@ namespace MyChat.Hubs
             Clients.All.echo(message);
         }
 
-        public string JoinSession(Guid sessionId, Guid clientId)
+        public void JoinSession(Guid sessionId, Guid clientId)
         {
             string clientName;
             using (var db = (IDb) new Db())
             {
                 // participant has accepted
                 var p = db.LoadParticipant(clientId, sessionId);
-                if (p == null) return null;
+                if (p == null) return;
                 p.Accepted = true;
                 db.SaveParticipant(p);
 
                 // get client name
                 var client = db.LoadClient(clientId);
-                if (client == null) return null;
+                if (client == null) return;
                 clientName = client.Name;
             }
 
@@ -80,9 +80,9 @@ namespace MyChat.Hubs
 
             Groups.Add(Context.ConnectionId, sessionId.ToString("N"));
 
-            SendSystemMessage(sessionId, string.Format("{0} has joined the chat", clientName));
+            Clients.Caller.verifyName(clientName);
 
-            return clientName;
+            SendSystemMessage(sessionId, string.Format("{0} has joined the chat", clientName));
         }
 
         public override Task OnDisconnected()
