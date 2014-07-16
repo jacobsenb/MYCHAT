@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyChat.Model.Interfaces;
 
 namespace MyChat.DataAccess.Model
 {
     [Table("Session")]
-    public partial class Session
+    public partial class Session : ISession
     {
         public Session()
         {

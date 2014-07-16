@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyChat.Model.Interfaces;
 
 namespace MyChat.DataAccess.Model
 {
     [Table("Participant")]
-    public partial class Participant
+    public partial class Participant : IParticipant
     {
         public Participant()
         {

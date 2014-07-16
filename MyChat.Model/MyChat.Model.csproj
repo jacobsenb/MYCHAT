@@ -39,8 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientDto.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\IMessage.cs" />
+    <Compile Include="Interfaces\IParticipant.cs" />
+    <Compile Include="Interfaces\IPractice.cs" />
     <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="MessageDto.cs" />
+    <Compile Include="ParticipantDto.cs" />
+    <Compile Include="PracticeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

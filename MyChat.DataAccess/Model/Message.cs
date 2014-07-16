@@ -1,17 +1,18 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyChat.Model.Interfaces;
 
 namespace MyChat.DataAccess.Model
 {
     [Table("Message")]
-    public partial class Message
+    public partial class Message : IMessage
     {
         public Guid MessageId { get; set; }
 
         [Column("Message")]
         [Required]
-        public string Message1 { get; set; }
+        public string MessageText { get; set; }
 
         public DateTime PostDateTime { get; set; }
 
