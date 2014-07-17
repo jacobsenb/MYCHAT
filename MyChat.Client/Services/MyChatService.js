@@ -9,10 +9,10 @@
             "getPractice": { method: 'GET', params: { guid: null }, url: "http://localhost:1053/api/Practice/{guid}" },
             "postPractice": { method: 'POST', url: "http://localhost:1053/api/Practice" },
 
-            "getClient": { method: 'GET', params: { practiceId: null }, url: "http://localhost:1053/api/Practice/{practiceId}/Clients" },
-            "postClient": { method: 'POST', params: { practiceId:null }, url: "http://localhost:1053/api/Practice/{practiceId}/Clients" },
+            "getClient": { method: 'GET', params: { practiceId: '@practiceId' }, url: "http://localhost:1053/api/Practice/:practiceId/Clients" },
+            "postClient": { method: 'POST', params: { practiceId: '@practiceId' }, url: "http://localhost:1053/api/Practice/:practiceId/Clients" },
 
-            "getParticipant": { method: 'GET', params: { sessionId: null }, url: "http://localhost:1053/api/{sessionId}/Participants" },
-            "postParticipant": { method: 'POST', params: { sessionId: null }, url: "http://localhost:1053/api/{sessionId}/Participants" }
+            "getParticipant": { method: 'GET', params: { sessionId: '@sessionId' }, url: "http://localhost:1053/api/Session/:sessionId/Participants" },
+            "postParticipant": { method: 'POST', params: { sessionId: '@sessionId' }, url: "http://localhost:1053/api/Session/:sessionId/Participants" }
         });
 });
