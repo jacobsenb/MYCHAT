@@ -59,7 +59,7 @@
 
                                       var id2 = guid();
                                       // do something on success
-                                      var participantDto = { ParticipantId: id2, ClientId: id3, Accepted: false, SessionId: sessionId }
+                                      var participantDto = { ParticipantId: id2, ClientId: successResult.ClientId, Accepted: false, SessionId: sessionId }
 
                                       var data = MyChatService.postParticipant({ sessionId: sessionId }, participantDto,
                                              function (successResult) {
