@@ -64,7 +64,7 @@
                                       var data = MyChatService.postParticipant({ sessionId: sessionId }, participantDto,
                                              function (successResult) {
                                                  pCount = pCount + 1;
-                                                 if (pCount = arrayLength) {
+                                                 if (pCount == arrayLength) {
                                                      var sendInvite = MyChatService.inviteParticipants({ sessionId: sessionId },
                                                             function (successResult) {
                                                                 // do something on success
