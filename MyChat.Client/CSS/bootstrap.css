@@ -40,13 +40,17 @@ template {
 }
 
 html {
+  height: 100%;
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
 body {
+  height: 100%;
   margin: 0;
+  background:url('..\\Images\\Background.jpg') #A98436 no-repeat left top;
+  background-size: 100%;
 }
 
 a {
