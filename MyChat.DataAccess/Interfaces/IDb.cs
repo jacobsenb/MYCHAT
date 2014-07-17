@@ -27,5 +27,6 @@ namespace MyChat.DataAccess.Interfaces
         IList<IMessage> LoadMessagesForSession(Guid sessionId);
         IList<IClient> LoadClientsForPractice(Guid practiceId);
         IList<IParticipant> LoadParticipantsForSession(Guid sessionId);
+        IList<IParticipantInfo> LoadParticipantsInfoForSession(Guid sessionId);
     }
 }

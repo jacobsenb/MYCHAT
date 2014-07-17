@@ -135,6 +135,26 @@ namespace MyChat.DataAccess
             return _context.Participants.Where(o => o.SessionId == sessionId).ToList().Cast<IParticipant>().ToList();
         }
 
+        public IList<IParticipantInfo> LoadParticipantsInfoForSession(Guid sessionId)
+        {
+            return (
+                from p in _context.Participants
+                join c in _context.Clients on p.ClientId equals c.ClientId
+                join prac in _context.Practices on p.Client.PracticeId equals prac.PracticeId
+                where p.SessionId == sessionId
+                select new ParticipantInfoDto
+                       {
+                           ParticipantId = p.ParticipantId,
+                           Accepted = p.Accepted,
+                           ClientId = p.ClientId,
+                           SessionId = p.SessionId,
+                           PracticeName = prac.Name,
+                           ClientName = c.Name,
+                           ClientEmail = c.Email
+                       }
+                ).ToList().Cast<IParticipantInfo>().ToList();
+        }
+
         public void Dispose()
         {
             _context.Dispose();

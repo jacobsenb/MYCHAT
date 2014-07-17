@@ -35,7 +35,17 @@
         <script src="signalr/hubs"></script>
         
         <script type="text/javascript">
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+
             $(function () {
+
+                var sessionId = getParameterByName('sessionId');
+                var clientId = getParameterByName('clientId');                
 
                 $('#sendmessage').attr("disabled", "disabled");
 
@@ -43,8 +53,16 @@
                 var chat = $.connection.chatHub;
 
                 // set session and client ids
-                $('#sessionId').val(prompt('Enter sessionId:', '2A9AB809-F50A-40AE-AE5C-F454F8B3861C'));
-                $('#clientId').val(prompt('Enter clientId:', '6C5DEE90-8C52-44F4-90CD-2F8AC8E56A8D'));
+                if (sessionId == null && clientId == null) {
+                    // prompt
+                    $('#sessionId').val(prompt('Enter sessionId:', '2A9AB809-F50A-40AE-AE5C-F454F8B3861C'));
+                    $('#clientId').val(prompt('Enter clientId:', '6C5DEE90-8C52-44F4-90CD-2F8AC8E56A8D'));
+                } else {
+                    // use qs params
+                    $('#sessionId').val(sessionId);
+                    $('#clientId').val(clientId);
+                }
+                
 
                 // Set initial focus to message input box.
                 $('#message').focus();
