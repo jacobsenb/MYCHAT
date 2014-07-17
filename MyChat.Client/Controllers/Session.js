@@ -14,9 +14,9 @@
 
     this.CreateSession = function () {
 
-        var practiceId = CreatePractice(this.practice);
+        var practiceId = CreatePractice(this.practice, this.participants, this.SessionId);
 
-        var clientId = CreateClient(practiceId, this.participants, this.SessionId);
+        //var clientId = CreateClient(practiceId, this.participants, this.SessionId);
 
         try {
 
@@ -37,8 +37,9 @@
         }
     }
 
-    function CreatePractice(practiceName) {
+    function CreatePractice(practiceName, participants, sessionId) {
         var id = guid();
+        var pCount = 0;
 
         try {
 
@@ -46,7 +47,48 @@
 
             var data = MyChatService.postPractice(practiceDto,
                    function (successResult) {
-                       // do something on success
+                       var arrayLength = participants.length;
+                       for (var i = 0; i < arrayLength; i++) {
+
+                           var id3 = guid();
+
+                           var clientDto = { ClientId: id3, Name: participants[i].Name, Email: participants[i].Email, PracticeId: id }
+
+                           var data = MyChatService.postClient({ practiceId: id }, clientDto,
+                                  function (successResult) {
+
+                                      var id2 = guid();
+                                      // do something on success
+                                      var participantDto = { ParticipantId: id2, ClientId: id3, Accepted: false, SessionId: sessionId }
+
+                                      var data = MyChatService.postParticipant({ sessionId: sessionId }, participantDto,
+                                             function (successResult) {
+                                                 pCount = pCount + 1;
+                                                 if (pCount = arrayLength) {
+                                                     var sendInvite = MyChatService.inviteParticipants({ sessionId: sessionId },
+                                                            function (successResult) {
+                                                                // do something on success
+                                                                console.log(successResult);
+                                                            }, function (errorResult) {
+                                                                // do something on error
+                                                                console.log(errorResult);
+                                                            });
+
+                                                 }
+                                                 // do something on success
+                                                 console.log(successResult);
+                                             }, function (errorResult) {
+                                                 // do something on error
+                                                 console.log(errorResult);
+                                             });
+                                      console.log(successResult);
+                                  }, function (errorResult) {
+                                      // do something on error
+                                      console.log(errorResult);
+                                  });
+
+
+                       }
                        console.log(successResult);
                    }, function (errorResult) {
                        // do something on error
@@ -60,47 +102,6 @@
 
         return id;
     };
-
-    function CreateClient(practiceId, participants,sessionId )
-    {
-
-        try {
-
-            var arrayLength = participants.length;
-            for (var i = 0; i < arrayLength; i++) {
-
-                var id = guid();
-
-                var clientDto = { ClientId: id, Name: participants[i].Name, Email: participants[i].Email, PracticeId: practiceId }
-
-                var data = MyChatService.postClient({ practiceId: practiceId }, clientDto,
-                       function (successResult) {
-
-                           var id2 = guid();
-                           // do something on success
-                           var participantDto = { ParticipantId: id2, ClientId: id, Accepted: false, SessionId: sessionId }
-
-                           var data = MyChatService.postParticipant({ sessionId: sessionId }, participantDto,
-                                  function (successResult) {
-                                      // do something on success
-                                      console.log(successResult);
-                                  }, function (errorResult) {
-                                      // do something on error
-                                      console.log(errorResult);
-                                  });
-                           console.log(successResult);
-                       }, function (errorResult) {
-                           // do something on error
-                           console.log(errorResult);
-                       });
-
-
-            }
-        }
-        catch (err) {
-
-        }
-    }
 
     this.AddParticipant = function (name, email) {
         var name1 = name;

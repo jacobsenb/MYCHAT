@@ -5,6 +5,7 @@
         {
             "getSession": { method: 'GET', params: {guid:null}, url: "http://localhost:1053/api/Session/{guid}" },
             "postSession": { method: 'POST', url: "http://localhost:1053/api/Session" },
+            "inviteParticipants": { method: 'POST', params: { sessionId: '@sessionId' }, url: "http://localhost:1053/api/Session/:sessionId/InviteParticipants" },
 
             "getPractice": { method: 'GET', params: { guid: null }, url: "http://localhost:1053/api/Practice/{guid}" },
             "postPractice": { method: 'POST', url: "http://localhost:1053/api/Practice" },
