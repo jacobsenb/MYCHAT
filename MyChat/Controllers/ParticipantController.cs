@@ -13,6 +13,7 @@ namespace MyChat.Controllers
     [RoutePrefix("api/Session")]
     public class ParticipantController : ApiController
     {
+        [HttpGet]
         [Route("{sessionId}/Participants")]
         public IEnumerable<ParticipantDto> GetParticipantsForSession(Guid sessionId)
         {
@@ -24,6 +25,7 @@ namespace MyChat.Controllers
             }
         }
 
+        [HttpPost]
         [Route("{sessionId}/Participants")]
         public ParticipantDto Post(Guid sessionId, [FromBody]ParticipantDto value)
         {
@@ -36,6 +38,20 @@ namespace MyChat.Controllers
                 var o = db.SaveParticipant(new ParticipantDto(value));
                 if (o == null) return null;
                 return new ParticipantDto(o);
+            }
+        }
+
+        [HttpGet]
+        [Route("{sessionId}/Participants/Info")]
+        public IEnumerable<ParticipantInfoDto> GetParticipantInfo(Guid sessionId)
+        {
+            if (sessionId == Guid.Empty)
+                throw new ArgumentNullException("sessionId");
+            using (var db = (IDb)new Db())
+            {
+                var data = db.LoadParticipantsInfoForSession(sessionId);
+                foreach (var d in data)
+                    yield return new ParticipantInfoDto(d);
             }
         }
     }
